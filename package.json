@@ -1,7 +1,7 @@
 {
   "name": "nuxt-svg-to-icon",
-  "private": "true",
-  "version": "1.0.2",
+  "private": "false",
+  "version": "1.0.1",
   "description": "",
   "repository": "https://github.com/SergioWaters/icon-nuxt",
   "license": "MIT",
