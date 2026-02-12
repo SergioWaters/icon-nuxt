@@ -4,6 +4,6 @@ export default defineNuxtConfig({
   compatibilityDate: 'latest',
   nuxtSvgToIcon: {
     iconsDir: 'assets/icons',
-    asyncComponent: true,
+    // asyncComponent: true,
   },
 })

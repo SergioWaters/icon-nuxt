@@ -62,20 +62,20 @@ const { data: icon } = await useAsyncData(
 </script>
 
 <style scoped>
-span > :deep(svg) {
+span:deep(svg) {
   width: 1em;
   height: 1em;
   vertical-align: middle;
   margin-bottom: .125em;
 }
 
-span[class$="_fill"],
-span[class$="_fill"]:deep(*) {
+span[class*="_fill"],
+span[class*="_fill"]:deep(*) {
   fill: currentColor !important;
 }
 
-span[class$="_stroke"],
-span[class$="_stroke"]:deep(*) {
+span[class*="_stroke"],
+span[class*="_stroke"]:deep(*) {
   stroke: currentColor !important;
 }
 </style>
