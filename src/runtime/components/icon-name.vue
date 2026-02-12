@@ -36,8 +36,8 @@ const icon = computed(() => {
 })
 </script>
 
-<style>
-span > svg {
+<style scoped>
+span > :deep(svg) {
   width: 1em;
   height: 1em;
   vertical-align: middle;
@@ -45,12 +45,12 @@ span > svg {
 }
 
 span[class$="_fill"],
-span[class$="_fill"] * {
+span[class$="_fill"]:deep(*) {
   fill: currentColor !important;
 }
 
 span[class$="_stroke"],
-span[class$="_stroke"] * {
-  fill: currentColor !important;
+span[class$="_stroke"]:deep(*) {
+  stroke: currentColor !important;
 }
 </style>
