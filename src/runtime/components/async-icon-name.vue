@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useRuntimeConfig } from '#imports'
+import { useAsyncData, useRuntimeConfig } from '#imports'
 
 const props = (defineProps<{
   name: string
@@ -25,15 +25,40 @@ const props = (defineProps<{
 const options = useRuntimeConfig().public.svgToIcon
 const className = options.componentClassName
 
-const icon = computed(() => {
+async function importIcon(name: string) {
+  let raw = ''
   let hasStroke = false
-  const raw = options.svgAssets?.[props.name]
 
-  if (raw) {
-    hasStroke = String(raw).includes('stroke')
+  try {
+    const iconsImport = import.meta.glob<string>('@/assets/icons/**/**.svg', {
+      query: '?raw',
+      import: 'default',
+    })
+    raw = await iconsImport[`/assets/icons/${name}.svg`]!()
+    if (String(raw).includes('stroke')) {
+      hasStroke = true
+    }
   }
-  return { raw, hasStroke }
-})
+  catch (e) {
+    console.error(`Import of icon <${name}> caused error: ${e}`)
+  }
+
+  return {
+    raw,
+    hasStroke,
+  }
+}
+
+const { data: icon } = await useAsyncData(
+  'icon' + props.name,
+  () => importIcon(props.name),
+  {
+    watch: [() => props.name],
+    default: () => ({
+      raw: '',
+      hasStroke: false,
+    }),
+  })
 </script>
 
 <style scoped>

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <NuxtIcon style="color: black;" name="file" />
+    <NuxtIcon
+      style="color: black;"
+      name="file"
+    />
   </div>
 </template>
 

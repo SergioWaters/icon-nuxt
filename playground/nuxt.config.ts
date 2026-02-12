@@ -2,7 +2,8 @@ export default defineNuxtConfig({
   modules: ['../src/module.ts'],
   devtools: { enabled: true },
   compatibilityDate: 'latest',
-  iconsNuxt: {
+  nuxtSvgToIcon: {
     iconsDir: 'assets/icons',
+    asyncComponent: true,
   },
 })
