@@ -76,6 +76,6 @@ span[class$="_fill"] * {
 
 span[class$="_stroke"],
 span[class$="_stroke"] * {
-  fill: currentColor !important;
+  stroke: currentColor !important;
 }
 </style>
