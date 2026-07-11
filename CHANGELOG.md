@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.0
+
+[compare changes](https://github.com/SergioWaters/icon-nuxt/compare/v1.0.15...v1.1.0)
+
+### 🚀 Enhancements
+
+- Respect custom iconsDir in async component ([1fb77e8](https://github.com/SergioWaters/icon-nuxt/commit/1fb77e8))
+
+### ❤️ Contributors
+
+- SergioWaters <mokretsovsa@gmail.com>
+
 ## v1.0.15
 
 [compare changes](https://github.com/SergioWaters/icon-nuxt/compare/v1.0.14...v1.0.15)
