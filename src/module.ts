@@ -1,5 +1,5 @@
 // modules/svg-assets.ts
-import { defineNuxtModule, createResolver, addComponent, addTypeTemplate, updateTemplates } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addComponent, addTemplate, addTypeTemplate, updateTemplates } from '@nuxt/kit'
 import { defu } from 'defu'
 import { readdirSync, lstatSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
@@ -103,6 +103,30 @@ export default defineNuxtModule({
     })
 
     if (options.asyncComponent) {
+      // import.meta.glob only accepts static patterns, so the glob for the
+      // configured iconsDir is generated into a build template
+      const globBase = '/' + options.iconsDir.replace(/\\/g, '/').replace(/^\/+|\/+$/g, '')
+
+      addTemplate({
+        filename: 'nuxt-svg-to-icon-glob.mjs',
+        getContents: () => [
+          `export const globBase = ${JSON.stringify(globBase)}`,
+          `export const iconsGlob = import.meta.glob(${JSON.stringify(globBase + '/**/*.svg')}, { query: '?raw', import: 'default' })`,
+          '',
+        ].join('\n'),
+      })
+
+      addTypeTemplate({
+        filename: 'nuxt-svg-to-icon-glob.d.ts',
+        getContents: () => [
+          `declare module '#build/nuxt-svg-to-icon-glob.mjs' {`,
+          `  export const globBase: string`,
+          `  export const iconsGlob: Record<string, () => Promise<string>>`,
+          `}`,
+          '',
+        ].join('\n'),
+      })
+
       addComponent({
         filePath: resolver.resolve('./runtime/components/async-icon-name.vue'),
         name: options.componentName,

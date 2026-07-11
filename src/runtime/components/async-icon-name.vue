@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { useAsyncData, useRuntimeConfig } from '#imports'
 import type { IconName } from '#build/nuxt-svg-to-icon-icon-names'
+import { globBase, iconsGlob } from '#build/nuxt-svg-to-icon-glob.mjs'
 
 const props = (defineProps<{
   name: IconName
@@ -31,11 +32,7 @@ async function importIcon(name: string) {
   let hasStroke = false
 
   try {
-    const iconsImport = import.meta.glob<string>('@/assets/icons/**/**.svg', {
-      query: '?raw',
-      import: 'default',
-    })
-    raw = await iconsImport[`/assets/icons/${name}.svg`]!()
+    raw = await iconsGlob[`${globBase}/${name}.svg`]!()
     if (String(raw).includes('stroke')) {
       hasStroke = true
     }

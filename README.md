@@ -78,9 +78,6 @@ export default defineNuxtConfig({
 | `componentName` | `string` | `'NuxtIcon'` | Name of the globally registered component. |
 | `componentClassName` | `string` | `'nuxt-icon'` | Base CSS class applied to the rendered `<span>` wrapper. |
 
-> [!NOTE]
-> The async mode (`asyncComponent: true`) resolves icons from `@/assets/icons`, so keep `iconsDir` at its default when using it.
-
 ## Component
 
 ### Props
