@@ -16,9 +16,10 @@
 
 <script setup lang="ts">
 import { computed, useRuntimeConfig } from '#imports'
+import type { IconName } from '#build/nuxt-svg-to-icon-icon-names'
 
 const props = (defineProps<{
-  name: string
+  name: IconName
   filled?: boolean
 }>())
 

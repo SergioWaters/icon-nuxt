@@ -8,7 +8,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "icon-nuxt": "latest",
+    "nuxt-svg-to-icon": "workspace:*",
     "nuxt": "^4.3.1"
   }
 }
